@@ -1,14 +1,20 @@
-.line{
-    -webkit-animation: fadeIn 2s ease forwards;
-	animation: fadeIn 2s ease forwards;
+.line {
+  -webkit-animation: fadeIn 2s ease;
+  animation: fadeIn 2s ease;
 }
 
 @-webkit-keyframes fadeIn {
-	0% { }
-	100% { opacity: 1; }
+  0% {
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
-	0% { }
-	100% { opacity: 1; }
+  0% {
+  }
+  100% {
+    opacity: 1;
+  }
 }

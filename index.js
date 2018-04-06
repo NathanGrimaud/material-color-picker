@@ -1,1 +1,1 @@
-module.exports = require("./lib/MdColorPicker")
+module.exports = require('./dist/material-color-picker');
