@@ -1,11 +1,12 @@
 {
-  "name": "md-color-picker",
+  "name": "material-color-picker",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --progress --colors --mode production --config webpack.prod.js",
-    "watch": "webpack --progress --colors --watch --mode development  --config webpack.dev.js"
+    "build": "webpack --progress --colors --mode production --config webpack.config.js",
+    "build:dev": "webpack --progress --colors --mode development --config webpack.config.js",
+    "watch": "webpack --progress --colors --watch --mode development  --config webpack.config.js"
   },
   "devDependencies": {
     "@material/elevation": "^0.34.0",
