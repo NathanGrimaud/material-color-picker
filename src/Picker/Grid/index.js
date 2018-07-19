@@ -27,7 +27,13 @@ function placeGrid(position: DOMRect) {
  * of the element
  */
 function locateInput(element: HTMLElement) {
-  return element.getBoundingClientRect();
+  const position = element.getBoundingClientRect();
+  return {
+    top: position.top + window.scrollY,
+    bottom: position.bottom + window.scrollY,
+    right: position.right + window.scrollX,
+    left: position.left + window.scrollX
+  };
 }
 
 export const Grid = (
@@ -42,7 +48,6 @@ export const Grid = (
     const placement = placeGrid(coords);
     const INPUT_HEIGHT = input.style.height;
     const INPUT_WIDTH = input.style.width;
-
     const width = window.innerWidth;
     const height = window.innerHeight;
     /* now we can place the grid around the input */

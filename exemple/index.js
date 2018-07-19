@@ -1,52 +1,27 @@
 import 'babel-polyfill';
 import MdColorPicker from '../src/index';
 document.addEventListener('DOMContentLoaded', () => {
-  MdColorPicker({
-    elementName: 'picker',
-    createIcon: true,
-    defaultColor: '#212121'
-  });
+  const pickers = [
+    'picker1',
+    'picker2',
+    'picker3',
+    'picker4',
+    'picker5',
+    'picker6',
+    'picker7',
+    'picker8',
+    'picker9'
+  ];
 
-  MdColorPicker({
-    elementName: 'picker2',
-    createIcon: false,
-    defaultColor: 'red'
-  });
+  pickers.forEach(pickerId => {
+    const events = MdColorPicker({
+      createIcon: false,
+      defaultColor: '#FEFEFE',
+      elementName: pickerId
+    });
 
-  const events = MdColorPicker({
-    elementName: 'picker3',
-    createIcon: false,
-    defaultColor: 'red'
-  });
-
-  events.on('color-changed', color => {
-    document.getElementById('picker3').value = color;
-  });
-
-  const right = MdColorPicker({
-    elementName: 'picker4',
-    createIcon: false,
-    defaultColor: 'red'
-  });
-  right.on('color-changed', color => {
-    document.getElementById('picker4').value = color;
-  });
-
-  const left = MdColorPicker({
-    elementName: 'picker5',
-    createIcon: false,
-    defaultColor: 'red'
-  });
-  left.on('color-changed', color => {
-    document.getElementById('picker5').value = color;
-  });
-
-  const bottom = MdColorPicker({
-    elementName: 'picker6',
-    createIcon: false,
-    defaultColor: 'red'
-  });
-  bottom.on('color-changed', color => {
-    document.getElementById('picker6').value = color;
+    events.on('color-changed', color => {
+      document.getElementById(pickerId).value = color;
+    });
   });
 });

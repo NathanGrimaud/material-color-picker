@@ -8,33 +8,41 @@
 </head>
 
 <body>
-    <div class="ex1">
-        Picker with icon generation
-        <div id="picker"></div>
-    </div>
 
-    <div class="ex2">
-        Picker using an existing input
-        <input type="text" placeholder="color" id="picker2" />
-    </div>
-
-    <div class="ex3">
-        Picker using an existing input & binding
-        <input type="text" placeholder="color" id="picker3" />
-    </div>
-
-    <div class="right">
-        Picker using an existing input & binding, with better display on the right
-        <input type="text" placeholder="color" id="picker4" />
-    </div>
-
-    <div class="left">
-        <input type="text" placeholder="color" id="picker5" />
-    </div>
-
-    <div class="bottom">
-        Picker using an existing input & binding, with better display on the bottom
-        <input type="text" placeholder="color" id="picker6" />
+    <div class="flex">
+        <div class="row">
+            <div class="color">
+                <input type="text" id="picker1" class="color-input">
+            </div>
+            <div class="color">
+                <input type="text" id="picker2" class="color-input">
+            </div>
+            <div class="color">
+                <input type="text" id="picker3" class="color-input">
+            </div>
+        </div>
+        <div class="row">
+            <div class="color">
+                <input type="text" id="picker4" class="color-input">
+            </div>
+            <div class="color">
+                <input type="text" id="picker5" class="color-input">
+            </div>
+            <div class="color">
+                <input type="text" id="picker6" class="color-input">
+            </div>
+        </div>
+        <div class="row">
+            <div class="color">
+                <input type="text" id="picker7" class="color-input">
+            </div>
+            <div class="color">
+                <input type="text" id="picker8" class="color-input">
+            </div>
+            <div class="color">
+                <input type="text" id="picker9" class="color-input">
+            </div>
+        </div>
     </div>
 
     <style>
@@ -46,16 +54,21 @@
             padding: 0;
         }
 
-        .right {
-            -js-display: flex;
-            display: flex;
-            justify-content: flex-end;
-            align-content: center;
+        .flex {
             align-items: center;
+            justify-content: space-evenly;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            height: 120%;
         }
 
-        .bottom {
-            margin-top: 50%;
+        .row {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            height: 50%;
         }
     </style>
 </body>
