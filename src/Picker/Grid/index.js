@@ -37,27 +37,30 @@ export const Grid = (
   ee: EventEmitter
 ) => {
   const gridWrapper = document.createElement('div');
-  const coords = locateInput(input);
-  const placement = placeGrid(coords);
-  const INPUT_HEIGHT = input.style.height;
-  const INPUT_WIDTH = input.style.width;
+  function replaceGrid() {
+    const coords = locateInput(input);
+    const placement = placeGrid(coords);
+    const INPUT_HEIGHT = input.style.height;
+    const INPUT_WIDTH = input.style.width;
 
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-  /* now we can place the grid around the input */
-  if (placement.canPlaceBottom === true) {
-    gridWrapper.style.top = `${coords.bottom}px`;
-  } else if (placement.canPlaceTop === true) {
-    gridWrapper.style.top = `${coords.top - GRID_HEIGHT}px`;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    /* now we can place the grid around the input */
+    if (placement.canPlaceBottom === true) {
+      gridWrapper.style.top = `${coords.bottom}px`;
+    } else if (placement.canPlaceTop === true) {
+      gridWrapper.style.top = `${coords.top - GRID_HEIGHT}px`;
+    }
+    if (placement.canPlaceRight === true && placement.canPlaceLeft === true) {
+      gridWrapper.style.left = `${coords.left - GRID_WIDTH / 4}px`;
+    } else if (placement.canPlaceRight === true) {
+      gridWrapper.style.left = `${coords.left}px`;
+    } else if (placement.canPlaceLeft === true) {
+      gridWrapper.style.left = `${coords.right - GRID_WIDTH}px`;
+    }
   }
-  if (placement.canPlaceRight === true && placement.canPlaceLeft === true) {
-    gridWrapper.style.left = `${coords.left - GRID_WIDTH / 4}px`;
-  } else if (placement.canPlaceRight === true) {
-    gridWrapper.style.left = `${coords.left}px`;
-  } else if (placement.canPlaceLeft === true) {
-    gridWrapper.style.left = `${coords.right - GRID_WIDTH}px`;
-  }
-
+  replaceGrid();
+  window.addEventListener('resize', replaceGrid);
   gridWrapper.setAttribute('class', 'grid-wrapper');
   const grid = document.createElement('div');
   grid.setAttribute('class', 'grid mdc-dialog__surface');
