@@ -16,7 +16,7 @@
   @include mdc-ripple-surface;
 }
 .color-container {
-  display: none;
+  display: none !important;
 }
 .color-container-open {
   display: block;

@@ -1,16 +1,10 @@
-/* @flow         */
-import {Square} from '../Square'
-import EventEmitter from 'wolfy87-eventemitter'
+/* @flow */
+import { Square } from '../Square';
+import EventEmitter from 'wolfy87-eventemitter';
 
-/**
- * 
- * @param {HTMLElement} element 
- * @param {string[]} colors 
- * @param {EventEmitter} ee
- */
-export const Line = (element, colors, ee) => {
-    const line = document.createElement("div")
-    line.setAttribute("class","line")
-    colors.forEach((color)=>Square(line,color, ee))
-    element.appendChild(line)
-}
+export const Line = (element: HTMLElement, colors: string[], ee: EventEmitter) => {
+  const line = document.createElement('div');
+  line.setAttribute('class', 'line');
+  colors.forEach(color => Square(line, color, ee));
+  element.appendChild(line);
+};

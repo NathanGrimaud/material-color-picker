@@ -7,7 +7,7 @@ import { Option } from 'space-lift';
 import _omit from 'lodash.omit';
 import _map from 'lodash.map';
 import './Picker/index.scss';
-
+import flexibility from 'flexibility';
 type ColorPickerConfig = {
   elementName: string,
   createIcon: boolean,
@@ -42,26 +42,34 @@ type Props = {
 
 const extract = (object: Object): string[][] => _map(object, item => _map(item));
 
+window.onload = () => {
+  flexibility(document.body);
+};
+
 export const MdColorPicker = (config: ColorPickerConfig): EventEmitter => {
+  /* because we you flexboxes we have to import a polyfill for ie10 et lower */
   const { elementName, createIcon, defaultColor } = config;
   const ee = new EventEmitter();
-
   const element: Optional<HTMLElement> = Option(document.getElementById(elementName));
   const omitedColors = ['black', 'white', 'lightText', 'lightIcons', 'darkText', 'darkIcons'];
   const materialColors = extract(_omit(colors, omitedColors));
-
   const materialNoAccent = materialColors.map(elem => elem.filter((color, index) => index <= 9));
-
   const container = document.createElement('div');
   container.setAttribute('class', 'color-container');
 
   const toggle = force => {
+    Array.from(document.querySelectorAll('.grid-wrapper')).forEach(wrapper => {
+      setTimeout(() => {
+        flexibility(wrapper);
+      }, 1000);
+    });
     if (container.getAttribute('class') === 'color-container' && force !== false)
       container.setAttribute('class', 'color-container-open');
     else container.setAttribute('class', 'color-container');
+
     return false;
   };
-  Grid(container, materialNoAccent, ee);
+  Grid(element.value, container, materialNoAccent, ee);
 
   const hideOnBlur = (element: HTMLElement) => {
     element.addEventListener('blur', event => {
@@ -91,10 +99,9 @@ const createWithIcon = (props: Props): void => {
   image.innerHTML = icon;
   image.setAttribute('class', 'round-btn mdc-elevation--z1');
   image.addEventListener('click', toggle);
-
   Option(image.firstElementChild).fold(
     () => console.error('Something went wrong creating the color-picker'),
-    (child: SVGSVGElement) => {
+    (child: SVGElement) => {
       child.style.fill = defaultColor;
       ee.on('color-changed', color => {
         child.style.fill = color;
